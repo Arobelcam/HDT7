@@ -2,18 +2,20 @@ package com;
 
 public class Arbol<E> {
 
-    private E val; // value associated with node
-    private Arbol<E> parent; // parent of node
-    private Arbol<E> left, right; // children of node
+
+    // Se crean las variables del arbol
+    private E val; 
+    private Arbol<E> parent; 
+    private Arbol<E> left, right; 
 
     public Arbol() {
-        // post: constructor that generates an empty node
+        // constructor que crea el nodo vacío
         val = null;
         parent = null; left = right = this;
     }
 
     public Arbol(E value) {
-        // post: returns a tree referencing value and two empty subtrees
+        // post, regresa 3 valores y 2 espacios vacios 
         val = value;
         right = left = new Arbol<E>();
         setLeft(left);
@@ -21,7 +23,7 @@ public class Arbol<E> {
     }
 
     public Arbol(E value, Arbol<E> left, Arbol<E> right) {
-        // post: returns a tree referencing value and two subtrees
+        // post: regresa 3 valores y 2 subarboles 
         val = value;
         if (left == null) { left = new Arbol<E>(); }
         setLeft(left);
@@ -30,24 +32,22 @@ public class Arbol<E> {
     }
 
     public Arbol<E> left() {
-        // post: returns reference to (possibly empty) left subtree
+       // regresa el lado izquierdo 
         return left;
     }
 
     public Arbol<E> right() {
-        // post: returns reference to (possibly empty) left subtree
+       // regresa el lado derecho 
         return right;
     }
 
     public Arbol<E> parent() {
-        // post: returns reference to parent node, or null
+        // regresa el nodo o un valor vació 
         return parent;
 
     }
 
     public void setLeft(Arbol<E> newLeft) {
-        // post: sets left subtree to newLeft
-        // re-parents newLeft if not null
         if (isEmpty()) return;
         if (left != null && left.parent() == this) left.setParent(null);
         left = newLeft;
@@ -55,8 +55,6 @@ public class Arbol<E> {
     }
 
     public void setRight(Arbol<E> newLeft) {
-        // post: sets left subtree to newLeft
-        // re-parents newLeft if not null
         if (isEmpty()) return;
         if (right != null && right.parent() == this) right.setParent(null);
         right= newLeft;
@@ -64,27 +62,28 @@ public class Arbol<E> {
     }
 
     protected void setParent(Arbol<E> newParent) {
-        // post: re-parents this node to parent reference, or null
+        // Se establece el parent 
         if (!isEmpty()) {
             parent = newParent;
         }
     }
 
     public E value() {
-        // post: returns value associated with this node
+        // regresa valores asociados con este nodo 
         return val;
     }
 
     public void setValue(E value) {
-        // post: sets the value associated with this node
+        // regresa valores asociados con este nodo 
         val = value;
     }
 
-    /* Function to check if tree is empty */
+    // funcion para comprobar si esta vacio 
     private boolean isEmpty() {
         return val == null && left == null && right == null;
     }
 
+    // Funcion para realizar el ordenamiento 
     public String inOrder(Arbol bt) {
         String arbol = "";
         if (bt.val != null) {
@@ -95,6 +94,7 @@ public class Arbol<E> {
         return arbol;
     }
 
+    // Funcion de buscar 
     public String buscar(String pIngles) {
         pIngles = pIngles.toLowerCase();
 
