@@ -4,15 +4,18 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Unit test for simple App.
- */
-class AppTest {
-    /**
-     * Rigorous Test.
-     */
+import com.Arbol;
+
+public class AppTest {
+
     @Test
-    void testApp() {
-        assertEquals(1, 1);
+
+    public void buscarTest(){
+        Arbol insancia = new Arbol<>();
+        String palabra = "";
+        String expected = null;
+        String result = insancia.buscar(palabra);
+        assertEquals(expected, result);
     }
+
 }
