@@ -6,39 +6,39 @@ public class Arbol<E> {
     // Se crean las variables del arbol
     private E val; 
     private Arbol<E> parent; 
-    private Arbol<E> left, right; 
+    private Arbol<E> izq, der; 
 
     public Arbol() {
         // constructor que crea el nodo vacío
         val = null;
-        parent = null; left = right = this;
+        parent = null; izq = der = this;
     }
 
-    public Arbol(E value) {
+    public Arbol(E valor) {
         // post, regresa 3 valores y 2 espacios vacios 
-        val = value;
-        right = left = new Arbol<E>();
-        setLeft(left);
-        setRight(right);
+        val = valor;
+        der = izq = new Arbol<E>();
+        setLeft(izq);
+        setRight(der);
     }
 
-    public Arbol(E value, Arbol<E> left, Arbol<E> right) {
+    public Arbol(E valor, Arbol<E> izq, Arbol<E> der) {
         // post: regresa 3 valores y 2 subarboles 
-        val = value;
-        if (left == null) { left = new Arbol<E>(); }
-        setLeft(left);
-        if (right == null) { right = new Arbol<E>(); }
-        setRight(right);
+        val = valor;
+        if (izq == null) { izq = new Arbol<E>(); }
+        setLeft(izq);
+        if (der == null) { der = new Arbol<E>(); }
+        setRight(der);
     }
 
     public Arbol<E> left() {
        // regresa el lado izquierdo 
-        return left;
+        return izq;
     }
 
     public Arbol<E> right() {
        // regresa el lado derecho 
-        return right;
+        return der;
     }
 
     public Arbol<E> parent() {
@@ -49,16 +49,16 @@ public class Arbol<E> {
 
     public void setLeft(Arbol<E> newLeft) {
         if (isEmpty()) return;
-        if (left != null && left.parent() == this) left.setParent(null);
-        left = newLeft;
-        left.setParent(this);
+        if (izq != null && izq.parent() == this) izq.setParent(null);
+        izq = newLeft;
+        izq.setParent(this);
     }
 
     public void setRight(Arbol<E> newLeft) {
         if (isEmpty()) return;
-        if (right != null && right.parent() == this) right.setParent(null);
-        right= newLeft;
-        right.setParent(this);
+        if (der != null && der.parent() == this) der.setParent(null);
+        der= newLeft;
+        der.setParent(this);
     }
 
     protected void setParent(Arbol<E> newParent) {
@@ -68,7 +68,7 @@ public class Arbol<E> {
         }
     }
 
-    public E value() {
+    public E valor() {
         // regresa valores asociados con este nodo 
         return val;
     }
@@ -80,16 +80,16 @@ public class Arbol<E> {
 
     // funcion para comprobar si esta vacio 
     private boolean isEmpty() {
-        return val == null && left == null && right == null;
+        return val == null && izq == null && der == null;
     }
 
     // Funcion para realizar el ordenamiento 
     public String inOrder(Arbol bt) {
         String arbol = "";
         if (bt.val != null) {
-            arbol += inOrder(bt.left);
-            arbol += bt.value();
-            arbol += inOrder(bt.right);
+            arbol += inOrder(bt.izq);
+            arbol += bt.valor();
+            arbol += inOrder(bt.der);
         }
         return arbol;
     }
@@ -103,9 +103,9 @@ public class Arbol<E> {
         } else if (((Asociacion) this.val).key.toString().equals(pIngles)) {
             return (String) ((Asociacion) this.val).value;
         } else if (((Asociacion) this.val).key.toString().compareTo(pIngles) > 0) {
-            return this.left.buscar(pIngles);
+            return this.izq.buscar(pIngles);
         } else if (((Asociacion) this.val).key.toString().compareTo(pIngles) < 0) {
-            return this.right.buscar((pIngles));
+            return this.der.buscar((pIngles));
         }
         return null;
 

@@ -90,14 +90,14 @@ public class Main {
 
     public static void agregar(Arbol btActual, Arbol btSiguiente) {
 
-        if (btActual.value().toString().compareTo(btSiguiente.value().toString()) > 0) {
-            if (btActual.left().value() == null) {
+        if (btActual.valor().toString().compareTo(btSiguiente.valor().toString()) > 0) {
+            if (btActual.left().valor() == null) {
                 btActual.setLeft(btSiguiente);
             } else {
                 agregar(btActual.left(), btSiguiente);
             }
-        } else if (btActual.value().toString().compareTo(btSiguiente.value().toString()) < 0) {
-            if (btActual.right().value() == null) {
+        } else if (btActual.valor().toString().compareTo(btSiguiente.valor().toString()) < 0) {
+            if (btActual.right().valor() == null) {
                 btActual.setRight(btSiguiente);
             } else {
                 agregar(btActual.right(), btSiguiente);
